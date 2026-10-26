@@ -3,11 +3,12 @@ let client,ready,autoUid=null,timer=null,busy=false,lastChecksum='',pendingBacku
 const $=s=>document.querySelector(s),note=m=>{$('#cloud-status').textContent=m;};
 async function connect(){
   if(location.hostname==='appassets.androidplatform.net')throw Error('현재 Android 패키지는 오프라인 모드입니다. 웹에서 공통 계정과 백업을 사용할 수 있습니다.');
-  ready ||= import('https://softm.github.io/shared/platform/v1/sdk.mjs');
+  const popup=window.open('about:blank','_blank','popup,width=520,height=760');if(!popup)throw Error('로그인 팝업을 허용해 주세요.');
+  try{ready ||= import('https://softm.github.io/shared/platform/v1/sdk.mjs');
   const sdk=await ready;client ||= await sdk.createSiteClient({siteId:'wirohaeyo'});
-  await client.login();
+  await client.login({popup});
   client.onUser(user=>{if(autoUid&&autoUid!==user?.uid)disableAuto();$('#cloud-account').textContent=user?'공통 계정에 연결됨':'공통 계정에 로그인해 주세요.';});
-  note('위로해요 보관소를 연결했습니다. 백업할 때 암호화된 데이터만 전송합니다.');await renderBackups();
+  note('위로해요 보관소를 연결했습니다. 백업할 때 암호화된 데이터만 전송합니다.');await renderBackups();}catch(error){popup.close();throw error;}
 }
 function requireClient(){if(!client?.currentUser)throw Error('먼저 공통 계정을 연결해 주세요.');return client;}
 async function backup(){
