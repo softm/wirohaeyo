@@ -54,3 +54,7 @@ node tests/core.test.cjs
 ```
 
 Android 연동과 배포 절차는 [Android README](https://github.com/softm/wirohaeyo.android#readme) 및 `docs/PRODUCT_SPEC.md` 참조. Android 실기기에서 공유, 파일 선택, 백업/복원, 앱 종료 뒤 잠금 동작을 확인한 후 Play 배포를 준비하세요. Android 16(API 36) 타기팅 설정이며 Android APK와 AAB 서명 배포는 아직 검증되지 않았습니다.
+
+## v0.3 선택적 공통 계정과 암호화 백업
+
+설정에서 공통 계정 연결 → 지금 백업 또는 이번 세션의 자동 백업을 선택할 수 있습니다. 원본 모듈과 실제 운영 연결 상태는 [공통 계정·보관소](https://github.com/softm/softm.github.io/tree/main/services/suite-platform)를 참고하세요. Firebase 로그인과 보관함 암호는 별개이며, 기기 내 분석과 AES-GCM 암호화는 유지합니다. 이 기능은 기본으로 꺼져 있고 Android 오프라인 패키지에는 아직 네이티브 원격 인증 브리지가 없습니다.

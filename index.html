@@ -43,7 +43,7 @@
         <button class="nav-item" data-view="memories" type="button"><span>▧</span> 기억 보관함</button>
         <button class="nav-item" data-view="settings" type="button"><span>◇</span> 내 공간 관리</button>
       </nav>
-      <div class="aside-foot"><div class="safety-dot"></div><span>암호화된 로컬 보관함<br /><small>외부 전송·추적 없음</small></span></div>
+      <div class="aside-foot"><div class="safety-dot"></div><span>암호화된 로컬 보관함<br /><small>로컬 우선 · 선택적 암호화 백업</small></span></div>
     </aside>
     <div class="main-shell">
       <header class="topbar"><div><span class="eyebrow" id="today-date"></span><span class="topbar-title">오늘도 나를 환대해요.</span></div><div class="top-actions"><span class="status-chip">⌁ 내 기기에 보관 중</span><button class="icon-btn" id="lock-btn" type="button" title="잠그기" aria-label="잠그기">⎋</button></div></header>
@@ -96,9 +96,9 @@
 
         <section class="view hidden" id="view-settings">
           <div class="page-heading"><span class="eyebrow">SAFE SPACE</span><h1>나의 공간을 안전하게.</h1><p>내 기록의 주인은 나예요. 무엇을 남길지, 어디에 보관할지 내가 결정해요.</p></div>
-          <div class="settings-stack">
+          <div class="settings-stack"><article class="paper-card"><h2>공통 계정 · 나의 클라우드 보관소</h2><p>계정은 다른 한눈·해요 서비스와 함께 쓰고, 위로해요 기록은 별도 보관소에 암호화해 저장합니다. 암호와 복호화 키는 기기를 떠나지 않습니다.</p><p id="cloud-account">클라우드 연결 안 됨 · 기기 내 기능은 그대로 사용할 수 있어요.</p><div class="dialog-actions"><button id="cloud-connect" class="primary" type="button">공통 계정 연결</button><button id="cloud-backup-now" class="outline-btn" type="button">지금 백업</button><button id="cloud-list" class="outline-btn" type="button">백업 목록</button><button id="cloud-disconnect" class="outline-btn" type="button">로그아웃</button></div><label><input id="cloud-auto" type="checkbox"> 이 창에서 기록이 바뀌면 암호화 자동 백업</label><p class="micro">자동 백업은 이번 연결 동안만 켜집니다. 앱 종료 후 백그라운드 백업은 아직 지원하지 않습니다. SNS 로그인은 게시글 수집 동의와 별개입니다.</p><p id="cloud-status" role="status" aria-live="polite"></p><div id="cloud-backups"></div><a href="https://softm.github.io/account/" target="_blank" rel="noopener" class="privacy-link">공통 계정과 사이트별 보관소 보기 ↗</a></article>
             <article class="paper-card setting-row"><div><h2>위로받고 싶은 방식</h2><p>내가 원하는 말투를 직접 고를 수 있어요.</p></div><select id="tone-select" aria-label="위로 방식"><option value="gentle">살며시, 다정하게</option><option value="recognition">내 노력을 인정해 줘요</option><option value="admire">나를 추앙하듯 찬사해요</option></select></article>
-            <article class="paper-card setting-row"><div><h2>암호화된 내 기억 백업</h2><p>내 기기를 벗어나는 유일한 방법은 내가 파일을 내보낼 때뿐이에요. 클라우드 자동 전송은 하지 않아요.</p></div><button id="export-backup" class="primary" type="button">암호화 백업 파일 받기 ↓</button></article>
+            <article class="paper-card setting-row"><div><h2>암호화된 내 기억 백업</h2><p>파일로 직접 보관하거나, 아래 공통 계정에서 암호화 클라우드 백업을 선택할 수 있어요.</p></div><button id="export-backup" class="primary" type="button">암호화 백업 파일 받기 ↓</button></article>
             <article class="paper-card setting-row"><div><h2>백업 복원</h2><p>기존 기록을 백업 파일의 데이터로 <strong>전체 교체</strong>합니다. 현재 데이터는 먼저 백업해 주세요.</p></div><label class="outline-btn" for="settings-backup-input">백업 파일 선택</label><input id="settings-backup-input" class="visually-hidden" type="file" accept=".json,application/json" /></article>
             <article class="paper-card setting-row"><div><h2>잠시 문 닫기</h2><p>현재 화면과 복호화된 작업 데이터를 비우고 잠급니다. 앱을 5분 이상 떠나 있으면 자동으로 잠급니다.</p></div><button id="settings-lock" class="outline-btn" type="button">지금 잠그기</button></article>
             <article class="paper-card setting-row danger-row"><div><h2>이 기기에서 모든 기억 삭제</h2><p>기기 안의 전체 기록과 암호 설정이 영구 삭제됩니다. 취소할 수 없어요.</p></div><button id="delete-everything" class="danger-btn" type="button">전부 삭제하기</button></article>
@@ -114,5 +114,6 @@
   <dialog id="dialog"><h2 id="dialog-title"></h2><p id="dialog-message"></p><div class="dialog-actions"><button id="dialog-cancel" type="button" class="soft-btn">취소</button><button id="dialog-ok" type="button" class="primary">확인</button></div></dialog>
   <dialog id="restore-dialog"><h2>백업 암호 확인</h2><p>이 백업을 생성했을 때 사용한 암호를 입력해 주세요. 암호가 일치하는 경우에만 복원을 진행합니다.</p><input type="password" id="restore-pass" autocomplete="off" placeholder="백업 암호" style="width:100%;padding:12px;border:1px solid #dde7dd;border-radius:10px" /><div class="dialog-actions"><button id="restore-cancel" class="soft-btn" type="button">취소</button><button id="restore-submit" class="primary" type="button">확인</button></div></dialog>
   <script src="./app.js" defer></script>
+  <script type="module" src="./cloud-adapter.mjs"></script>
 </body>
 </html>

@@ -21,16 +21,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify no-remote local storage MVP
+      - name: Verify local encryption and optional cloud adapter
         run: |
           node --check app.js
           node --check sw.js
+          node --check cloud-adapter.mjs
           node tests/core.test.cjs
       - name: Package public web files only
         run: |
           mkdir -p dist
-          cp index.html privacy.html app.js styles.css sw.js icon.svg manifest.webmanifest .nojekyll dist/
-          test "$(find dist -type f | wc -l)" -eq 8
+          cp index.html privacy.html app.js cloud-adapter.mjs styles.css sw.js icon.svg manifest.webmanifest .nojekyll dist/
+          test "$(find dist -type f | wc -l)" -eq 9
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
