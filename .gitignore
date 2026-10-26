@@ -1,0 +1,20 @@
+.DS_Store
+*.log
+.env
+.env.*
+node_modules/
+coverage/
+*.backup.json
+*.wirohaeyo.json
+
+# Never publish personal vault exports
+*.encrypted.json
+*.backup.json
+*.wirohaeyo.json
+*.keystore
+*.jks
+
+# Generated Python files and local E2E previews
+__pycache__/
+*.pyc
+tests/mobile-preview.png
