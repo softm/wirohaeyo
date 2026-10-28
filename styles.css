@@ -17,3 +17,5 @@
 .policy-content p{font-size:14px}
 .policy-link,.privacy-link{color:#2c715b;font-weight:700;text-underline-offset:4px}
 .privacy-link{display:inline-block;margin:12px 0 0;font-size:12px}
+
+.web-account{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;padding:12px 20px}.web-account button{min-height:40px;border:1px solid #bccbbd;border-radius:8px;padding:8px 12px;background:#fff;color:#294b3a;cursor:pointer;box-shadow:0 2px 0 #294b3a25}.web-account button:active{transform:translateY(2px);box-shadow:none}.web-account button:focus-visible{outline:3px solid #428b6a;outline-offset:2px}.web-account [hidden]{display:none}.web-account span{font-size:12px;max-width:360px}
