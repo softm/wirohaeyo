@@ -1,5 +1,5 @@
-const CACHE_NAME='wirohaeyo-v0.3.2-withdrawal';
-const ASSETS=['./','./index.html','./styles.css','./app.js','./cloud-adapter.mjs','./manifest.webmanifest','./icon.svg','./privacy.html'];
+const CACHE_NAME='wirohaeyo-v0.3.3-account-menu';
+const ASSETS=['./','./index.html','./styles.css','./app.js','./cloud-adapter.mjs?v=20261030-menu-1','./manifest.webmanifest','./icon.svg','./privacy.html'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
-self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('wirohaeyo-')&&k!==CACHE_NAME).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{if(event.request.method!=='GET'||new URL(event.request.url).origin!==location.origin)return;event.respondWith(caches.match(event.request).then(r=>r||fetch(event.request).then(response=>{if(response.ok&&new URL(event.request.url).pathname.startsWith(new URL(self.registration.scope).pathname)){const clone=response.clone();caches.open(CACHE_NAME).then(c=>c.put(event.request,clone));}return response;})));});

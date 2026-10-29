@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#f8f4ed" />
   <meta name="description" content="기억을 보관하고, 견뎌온 하루를 발견해 조용히 위로하는 나만의 암호화된 공간." />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://softm.github.io https://www.gstatic.com; style-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://softm.github.io https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://www.googleapis.com https://asia-northeast3-softm-hannun-api.cloudfunctions.net; object-src 'none'; frame-src https://softm-hannun-api.firebaseapp.com; base-uri 'self'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://softm.github.io https://www.gstatic.com; style-src 'self'; img-src 'self' data: blob: https://*.googleusercontent.com https://*.kakaocdn.net https://*.pstatic.net https://static.nid.naver.com; connect-src 'self' https://softm.github.io https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://www.googleapis.com https://asia-northeast3-softm-hannun-api.cloudfunctions.net; object-src 'none'; frame-src https://softm-hannun-api.firebaseapp.com; base-uri 'self'; form-action 'none'" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./styles.css" />
@@ -115,7 +115,6 @@
   <dialog id="dialog"><h2 id="dialog-title"></h2><p id="dialog-message"></p><div class="dialog-actions"><button id="dialog-cancel" type="button" class="soft-btn">취소</button><button id="dialog-ok" type="button" class="primary">확인</button></div></dialog>
   <dialog id="restore-dialog"><h2>백업 암호 확인</h2><p>이 백업을 생성했을 때 사용한 암호를 입력해 주세요. 암호가 일치하는 경우에만 복원을 진행합니다.</p><input type="password" id="restore-pass" autocomplete="off" placeholder="백업 암호" style="width:100%;padding:12px;border:1px solid #dde7dd;border-radius:10px" /><div class="dialog-actions"><button id="restore-cancel" class="soft-btn" type="button">취소</button><button id="restore-submit" class="primary" type="button">확인</button></div></dialog>
   <script src="./app.js" defer></script>
-  <script type="module" src="./cloud-adapter.mjs"></script>
+  <script type="module" src="./cloud-adapter.mjs?v=20261030-menu-1"></script>
 </body>
 </html>
-
